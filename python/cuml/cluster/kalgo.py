@@ -1,4 +1,4 @@
-from cuml import KMeans
+from cuml.cluster.kmeans import KMeans
 
 class KAlgo:
     def __init__(self, handle=None, n_clusters=8, max_iter=300, tol=1e-4,

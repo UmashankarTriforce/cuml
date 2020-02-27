@@ -15,5 +15,5 @@
 #
 
 from cuml.cluster.dbscan import DBSCAN
+from cuml.cluster.kalgo import KAlgo
 from cuml.cluster.kmeans import KMeans
-
