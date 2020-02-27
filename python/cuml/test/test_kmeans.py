@@ -51,7 +51,7 @@ def test_kmeans_sklearn_comparison(name, nrows):
     params = default_base.copy()
     params.update(pat[1])
 
-    cuml_kmeans = cuml.KMeans(n_clusters=params['n_clusters'])
+    cuml_kmeans = cuml.KAlgo(n_clusters=params['n_clusters']).algo('kmeans')
 
     X, y = pat[0]
 
@@ -105,7 +105,7 @@ def test_kmeans_sklearn_comparison_default(name, nrows):
     params = default_base.copy()
     params.update(pat[1])
 
-    cuml_kmeans = cuml.KMeans(n_clusters=params['n_clusters'])
+    cuml_kmeans = cuml.KAlgo(n_clusters=params['n_clusters']).algo('kmeans')
 
     X, y = pat[0]
 
@@ -141,11 +141,11 @@ def test_all_kmeans_params(n_rows, n_clusters, max_iter, init,
     if init == 'preset':
         init = np.random.rand(n_clusters, 10)
 
-    cuml_kmeans = cuml.KMeans(n_clusters=n_clusters,
+    cuml_kmeans = cuml.KAlgo(n_clusters=n_clusters,
                               max_iter=max_iter,
                               init=init,
                               oversampling_factor=oversampling_factor,
-                              max_samples_per_batch=max_samples_per_batch)
+                              max_samples_per_batch=max_samples_per_batch).algo('kmeans')
 
     cuml_kmeans.fit_predict(X)
 
@@ -162,9 +162,9 @@ def test_score(nrows, ncols, nclusters):
                       cluster_std=0.01,
                       random_state=10)
 
-    cuml_kmeans = cuml.KMeans(verbose=1, init="k-means||",
+    cuml_kmeans = cuml.KAlgo(verbose=1, init="k-means||",
                               n_clusters=nclusters,
-                              random_state=10)
+                              random_state=10).algo('kmeans')
 
     cuml_kmeans.fit(X)
 
