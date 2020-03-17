@@ -84,7 +84,7 @@ computeKMedians(thrust::host_vector<thrust::host_vector<T>> hostData,
 		computeClusters<T> <<< deviceData.size() / 1024 + 1, 1024 >>> (deviceData,
 			partition, deviceCentroids);
 		cudaDeviceSynchronize();
-		computeCentroid<T> << < partition.size() / 1024 + 1, 1024 >> > (deviceData,
+		computeCentroid<T> <<< partition.size() / 1024 + 1, 1024 >>> (deviceData,
 			partition, deviceCentroids);
 		cudaDeviceSynchronize();
 	}
